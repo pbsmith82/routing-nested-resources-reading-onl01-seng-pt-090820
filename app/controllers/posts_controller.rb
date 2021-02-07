@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    if params[:author_id] #If statement for Nested Routes
+      @posts = Author.find(params[:author_id]).posts
+    else
+      @posts = Post.all
+    end
   end
 
   def show
